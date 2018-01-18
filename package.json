@@ -2,7 +2,7 @@
   "name": "react_task",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://DimaLauraniuk.github.io/react-task",
+  "homepage": "http://DimaLauraniuk.github.io/react_task",
   "dependencies": {
     "gh-pages": "^1.1.0",
     "react": "^16.2.0",
