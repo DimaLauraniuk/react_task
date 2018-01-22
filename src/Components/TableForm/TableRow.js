@@ -2,29 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class TableRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isChecked: this.props.isDone,
-      title: '',
-      priority: '',
-      date: '16.01.2018'
-    };
-  }
   render() {
+    const {task}= this.props;
     return (
-      <tbody>
         <tr>
+          
           <td><input
             name="isDone"
             type="checkbox"
-            checked ={this.state.isChecked}/>
+            checked ={task.isDone}/>
           </td>
-          <td>{this.props.title}</td>
-          <td>{this.props.priority}</td>
-          <td>{this.props.date}</td>
+          <td>{task.title}</td>
+          <td>{task.priority}</td>
+          <td>{task.date}</td>
         </tr>
-      </tbody>
     );  
 
   }

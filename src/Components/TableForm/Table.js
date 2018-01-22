@@ -4,15 +4,21 @@ import TableRow from './TableRow';
 import './Table.css';
 
 class Table extends Component {
+  
   render() {
+    var tasks =  [
+      { isDone: true, title: 'Create To do app', priority: 'Medium', date: '2018-01-01' },
+      { isDone: false, title: 'Visit lesson', priority: 'Low', date: '2018-05-01' },
+      { isDone: false, title: 'Have a rest', priority: 'Medium', date: '2018-01-01' },
+      { isDone: true, title: 'Play with kids', priority: 'Medium', date: '2018-06-01' },
+    ];
     return (
       <div className="Table">
         <table className='tableForm' border='1'>
-          <TableHeader />
-          <TableRow isDone={false} title='TEST1' priority='High' date='16.01.2017' />
-          <TableRow isDone={true} title='TEST2' priority='Low' date='6.02.2017' />
-          <TableRow isDone={true} title='TEST3' priority='Medium' date='13.11.2014' />
-          <TableRow isDone={false} title='TEST4' priority='High' date='26.1.2015' />
+          <TableHeader done='Done' title='Title' priority='Priority' date='Date' />
+          <tbody>
+            {tasks.map((task) => <TableRow task={task} />)}
+          </tbody>        
         </table>
       </div>
     );
