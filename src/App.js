@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import TaskForm from './AddTaskForm/index';
-import FilterForm from './FilterForm/index';
-import TableForm from './TableForm/index';
+import ToDoListWrapper from './Components/ToDoListWrapper/ToDoListWrapper';
 
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-      <TaskForm/>
-      <br />
-      <FilterForm/>
-      <br />
-      <TableForm/>
+        <ToDoListWrapper/>
       </div>
     );
   }
