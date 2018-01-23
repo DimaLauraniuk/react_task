@@ -3,7 +3,7 @@ import { Task } from '../AddTaskForm';
 import FilterForm from '../FilterForm/index';
 import Table from '../TableForm/Table';
 
-import { getTasks, addTask } from '../../Utils/apiWrapper';
+import { getTasks, addTask, removeTask } from '../../Utils/apiWrapper';
 
 class ToDoListWrapper extends Component {
   state = {
@@ -19,6 +19,11 @@ class ToDoListWrapper extends Component {
         tasks: [...this.state.tasks, taskData]
       }))
   }
+  removeTask = (id) => {
+    removeTask(id).then(() => this.setState({
+      tasks: this.state.tasks.filter(item => item.id !== id)
+    }))
+  }
   render() {
     return (
       <div className="App">
@@ -26,7 +31,7 @@ class ToDoListWrapper extends Component {
         <br />
         <FilterForm />
         <br />
-        <Table tasks={this.state.tasks} />
+        <Table tasks={this.state.tasks} removeTask={this.removeTask} />
       </div>
     );
   }

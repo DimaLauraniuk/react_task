@@ -19,10 +19,18 @@ tasks = Array.isArray(tasks) ? tasks : [
 ].map(item => ({ ...item, id: getId() }));
 
 const saveTasks = () => localStorage.setItem(LS_KEY, JSON.stringify(tasks));
+
 export const getTasks = () => new Promise(resolve => setTimeout(resolve, 0, [...tasks]));
+
 export const addTask = data => {
   let task = { ...data, id: getId() };
   tasks.push(task);
   saveTasks();
   return new Promise(resolve => setTimeout(resolve, 0, task));
+}
+
+export const removeTask = id => {
+  tasks = tasks.filter(item => item.id !== id);
+  saveTasks();
+  return new Promise(resolve => setTimeout(resolve, 0, id));
 }

@@ -15,9 +15,9 @@ class Table extends Component {
     return (
       <div className="Table">
         <table className='tableForm' border='1'>
-          <TableHeader done='Done' title='Title' priority='Priority' date='Date' />
+          <TableHeader id='Id' done='Done' title='Title' priority='Priority' date='Date' remove ='Remove' />
           <tbody>
-            {tasks.map((task) => <TableRow task={task} />)}
+            {tasks.map((task) => <TableRow key={task.id} task={task} removeTask={this.props.removeTask}/>)}
           </tbody>
         </table>
       </div>
@@ -26,7 +26,8 @@ class Table extends Component {
 }
 
 Table.propTypes ={
-  tasks: PropTypes.array
+  tasks: PropTypes.array,
+  removeTask: PropTypes.func
 };
 
 export default Table;
