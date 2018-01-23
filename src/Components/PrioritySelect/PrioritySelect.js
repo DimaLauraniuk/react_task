@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class PrioritySelect extends Component {
+export class PrioritySelect extends Component {
   render() {
     return (
           <select required name={this.props.name} defaultValue={'Medium'}>
@@ -16,5 +16,3 @@ class PrioritySelect extends Component {
 PrioritySelect.propTypes ={
   name: PropTypes.string  
 };
-
-export default PrioritySelect;

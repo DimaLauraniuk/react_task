@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import TaskForm from '../AddTaskForm/index';
+import { Task } from '../AddTaskForm';
 import FilterForm from '../FilterForm/index';
-import TableForm from '../TableForm/index';
+import Table from '../TableForm/Table';
 
+import { getTasks, addTask } from '../../Utils/apiWrapper';
 
 class ToDoListWrapper extends Component {
+  state = {
+    tasks: []
+  }
+  componentWillMount() {
+    getTasks().then((tasks) => this.setState({ tasks }));
+  }
+  addTask = (taskData) => {
+    console.log(taskData);
+    addTask(taskData).then((taskData) =>
+      this.setState({
+        tasks: [...this.state.tasks, taskData]
+      }))
+  }
   render() {
     return (
       <div className="App">
-        <TaskForm title='Add task' />
+        <Task title='Add task' onSubmit={this.addTask} />
         <br />
         <FilterForm />
         <br />
-        <TableForm />
+        <Table tasks={this.state.tasks} />
       </div>
     );
   }
