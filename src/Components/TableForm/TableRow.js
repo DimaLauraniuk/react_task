@@ -13,7 +13,6 @@ class TableRow extends Component {
       <tr>
         <td>{task.id}</td>
         <td><input
-          name="isDone"
           type="checkbox"
           checked={task.isDone}
           onChange={(ev) =>

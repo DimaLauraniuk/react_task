@@ -1,49 +1,40 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Filter.css';
 
-class Filter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showCompleted: true,
-      dateFrom: '',
-      dateTo: '',
-      search: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
-  }
+export class Filter extends Component {
   render() {
     return (
       <div className="Filter">
         <fieldset className='filterFormfieldset-auto-width'>
           <legend align="left">Filter</legend>
+          <input
+            type="checkbox"
+            checked={this.props.filter.showCompleted}
+            onChange={(ev) => this.props.onFilterUpdate({ showCompleted: ev.target.checked })} ></input>
           <label>
             Show Completed
-             <input
-              name="showCompleted"
-              type="checkbox"
-              onChange={this.handleChange} />
           </label>
           &ensp;
-          <input name="dateFrom" type="date" value={this.state.dateFrom} onChange={this.handleChange} />
-          &ensp;
-          <input name="dateTo" type="date" value={this.state.dateTo} onChange={this.handleChange} />
-          <br/><br/>
-          <input className='textSearch'  placeholder='Text search (title + description)' name="search" type="text" value={this.state.search} onChange={this.handleChange} />
-          <br /><br /><br />
-          <button className='filterBtn'>Filter</button>
+          <label>
+            {'From'}
+            &ensp;
+            <input name="dateFrom" type="date" />
+          </label>
+          <label>
+            {'To'}
+            &ensp;
+            <input name="dateTo" type="date"></input>
+          </label>
+          <br /><br />
+          <input className='textSearch' placeholder='Text search (title + description)' name="search" type="text" />
         </fieldset>
       </div>
     );
   }
 }
 
-export default Filter;
+Filter.propTypes = {
+  onFilterUpdate: PropTypes.func,
+  filter: PropTypes.object
+}

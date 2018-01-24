@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Task } from '../AddTaskForm';
-import FilterForm from '../FilterForm/index';
+import { Filter } from '../FilterForm';
 import Table from '../TableForm/Table';
 
 import { getTasks, addTask, removeTask, updateTask } from '../../Utils/apiWrapper';
 
 class ToDoListWrapper extends Component {
   state = {
-    tasks: []
+    tasks: [],
+    filter: {
+      showCompleted: true
+    }
   }
   componentWillMount() {
     getTasks().then((tasks) => this.setState({ tasks }));
@@ -37,14 +40,29 @@ class ToDoListWrapper extends Component {
     }))
   }
 
+  onFilterUpdate = (changes) => {
+    this.setState({
+      filter: {
+        ...this.state.filter,
+        ...changes
+      }
+    });
+  }
+
   render() {
+    const {
+      tasks,
+      filter,
+      filter: { showCompleted }
+    } = this.state;
+    const filteredTasks = showCompleted ? tasks : tasks.filter((item) => !item.isDone);
+    console.log(this.state);
     return (
       <div className="App">
         <Task title='Add task' onSubmit={this.addTask} />
         <br />
-        <FilterForm />
-        <br />
-        <Table tasks={this.state.tasks} removeTask={this.removeTask} updateTask={this.updateTask} />
+        <Filter filter={filter} onFilterUpdate={this.onFilterUpdate} />
+        <Table tasks={filteredTasks} removeTask={this.removeTask} updateTask={this.updateTask} />
       </div>
     );
   }
