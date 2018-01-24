@@ -5,19 +5,22 @@ import TableRow from './TableRow';
 import './Table.css';
 
 class Table extends Component {
-  state = {
+  /*state = {
     tasks: []
-  }
+  }*/
   render() {
     const {
-      tasks = []
+      tasks = [],
+      updateTask,
+      removeTask
     } = this.props;
     return (
       <div className="Table">
         <table className='tableForm' border='1'>
-          <TableHeader id='Id' done='Done' title='Title' priority='Priority' date='Date' remove ='Remove' />
+          <TableHeader id='Id' done='Done' title='Title' priority='Priority' date='Date' remove='Remove' />
           <tbody>
-            {tasks.map((task) => <TableRow key={task.id} task={task} removeTask={this.props.removeTask}/>)}
+            {tasks.map((task) =>
+              <TableRow key={task.id} task={task} removeTask={removeTask} updateTask={updateTask} />)}
           </tbody>
         </table>
       </div>
@@ -25,9 +28,10 @@ class Table extends Component {
   }
 }
 
-Table.propTypes ={
+Table.propTypes = {
   tasks: PropTypes.array,
-  removeTask: PropTypes.func
+  removeTask: PropTypes.func,
+  updateTask: PropTypes.func
 };
 
 export default Table;

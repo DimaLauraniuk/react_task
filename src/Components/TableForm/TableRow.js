@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class TableRow extends Component {
+  changeTaskProperty(propName, value) {
+    this.props.updateTask(this.props.task.id, {
+      [propName]: value
+    });
+  }
   render() {
     const { task, removeTask } = this.props;
     return (
@@ -10,12 +15,14 @@ class TableRow extends Component {
         <td><input
           name="isDone"
           type="checkbox"
-          checked={task.isDone} />
+          checked={task.isDone}
+          onChange={(ev) =>
+            this.changeTaskProperty('isDone', ev.target.checked)} />
         </td>
         <td>{task.title}</td>
         <td>{task.priority}</td>
         <td>{task.date}</td>
-        <td><button onClick={()=> removeTask(task.id)}>X</button></td>
+        <td><button onClick={() => removeTask(task.id)}>X</button></td>
       </tr>
     );
 
@@ -24,7 +31,8 @@ class TableRow extends Component {
 
 TableRow.propTypes = {
   task: PropTypes.object,
-  removeTask: PropTypes.removeTask
+  removeTask: PropTypes.removeTask,
+  updateTask: PropTypes.func
 };
 
 export default TableRow;
