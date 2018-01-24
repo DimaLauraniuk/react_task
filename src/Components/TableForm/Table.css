@@ -1,3 +1,23 @@
 .tableForm {
   width:530px;
 }
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  margin: 1px;
+  float: right;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid black;
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  margin: 1px;
+  float: right;
+  clear: right;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid black;
+}

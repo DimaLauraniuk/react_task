@@ -31,7 +31,7 @@ class TableRow extends Component {
 
 TableRow.propTypes = {
   task: PropTypes.object,
-  removeTask: PropTypes.removeTask,
+  removeTask: PropTypes.func,
   updateTask: PropTypes.func
 };
 

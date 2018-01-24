@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TableHeaderWithSortArrows from './TableHeaderWithSortArrows';
 
 class TableHeader extends Component {
   render() {
+    const orderBy = (name) => (order) => this.props.setOrder(`${order ? '':'-'}${name}`);
     return (
       <thead>
         <tr>
-          <th>{this.props.id}</th>
-          <th>{this.props.done}</th>
-          <th>{this.props.title}</th>
-          <th>{this.props.priority}</th>
-          <th>{this.props.date}</th>
-          <th>{this.props.remove}</th>
+          <TableHeaderWithSortArrows label='Id' setSort={orderBy('id')}/>
+          <TableHeaderWithSortArrows label='Done' setSort={orderBy('done')}/>
+          <TableHeaderWithSortArrows label='Title' setSort={orderBy('title')}/>
+          <TableHeaderWithSortArrows label='Priority'/>
+          <TableHeaderWithSortArrows label='Date'/>
+          <TableHeaderWithSortArrows label='Remove'/>
         </tr>
       </thead>
     );
   }
 }
 
-TableHeader.propTypes ={
-  id: PropTypes.string,
-  done: PropTypes.string,
-  title: PropTypes.string,
-  priority: PropTypes.string,
-  date: PropTypes.string,
-  remove: PropTypes.string
+TableHeader.propTypes = {
+  setOrder: PropTypes.func
 };
 
 export default TableHeader;
