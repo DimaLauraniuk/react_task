@@ -1,0 +1,18 @@
+.filterFormfieldset-auto-width {
+  width:500px;
+}
+.textSearch {
+  width: 435px
+}
+fieldset {
+  position: relative;
+  }
+fieldset legend{
+    font-weight: bold;
+}
+.filterBtn{
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
+  min-width: 60px;
+}
